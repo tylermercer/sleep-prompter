@@ -1,0 +1,8 @@
+{
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "javascript.format.semicolons": "insert",
+    "typescript.format.semicolons": "insert"
+}
