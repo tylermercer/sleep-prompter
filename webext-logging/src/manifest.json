@@ -1,0 +1,10 @@
+{
+	"name": "focus-tools/webext-logging",
+	"manifest_version": 2,
+	"version": "0.0.1",
+	"background": {
+		"scripts": [
+			"background/background-main.ts"
+		]
+	}
+}

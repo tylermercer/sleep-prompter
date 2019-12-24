@@ -1,0 +1,29 @@
+{
+  "name": "webext-logging",
+  "version": "0.0.1",
+  "description": "A WebExtension for logging focus data",
+  "scripts": {
+    "start": "parcel src/manifest.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drmercer/focus-tools.git"
+  },
+  "author": "Dan & Tyler Mercer",
+  "license": "UNLICENSED",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/drmercer/focus-tools/issues"
+  },
+  "homepage": "https://github.com/drmercer/focus-tools#readme",
+  "dependencies": {
+    "webextension-polyfill": "^0.6.0"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-web-extension": "^1.5.2",
+    "typescript": "^3.7.4",
+    "web-ext-types": "^3.2.1"
+  }
+}
