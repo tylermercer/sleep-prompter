@@ -1,7 +1,7 @@
 {
-  "name": "webext-logging",
+  "name": "sleep-prompter",
   "version": "0.0.1",
-  "description": "A WebExtension for logging focus data",
+  "description": "A WebExtension that subtly prompts the user to think about sleep near their bedtime",
   "scripts": {
     "start": "run-p start:parcel start:webext",
     "start:parcel": "parcel watch --no-hmr src/manifest.json",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/drmercer/focus-tools.git"
+    "url": "git+https://github.com/tylermercer/sleep-prompter.git"
   },
   "author": "Dan & Tyler Mercer",
   "license": "UNLICENSED",
   "private": true,
   "bugs": {
-    "url": "https://github.com/drmercer/focus-tools/issues"
+    "url": "https://github.com/tylermercer/sleep-prompter/issues"
   },
-  "homepage": "https://github.com/drmercer/focus-tools#readme",
+  "homepage": "https://github.com/tylermercer/sleep-prompter#readme",
   "dependencies": {
     "webextension-polyfill": "^0.6.0"
   },
