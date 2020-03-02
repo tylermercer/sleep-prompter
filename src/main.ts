@@ -7,15 +7,13 @@ const getFilters = (offset: number) => {
   return Math.random() > 0.7 ? "filter: " + filters[offset % filters.length] + ";" : "";
 };
 
+var likelihood = 1; //TODO: compute likelihood based on time of day
+
 const update = () => {
   const elements = document.getElementsByTagName("img");
 
   const imageOffset: number = Math.round(Math.random() * images.length);
   const filterOffset: number = Math.round(Math.random() * images.length);
-
-  console.log("Offset: " + imageOffset);
-
-  const likelihood = 1; //TODO: compute likelihood based on time of day
 
   for (let i = 0; i < elements.length; i++) {
     let el = elements[i];
@@ -35,6 +33,13 @@ observer.observe(document.getRootNode(), {
   subtree: true,
 });
 
-update();
+const restoreOptions = () => {
+  var gettingItem = browser.storage.sync.get('likelihood');
+  gettingItem.then((res) => {
+    likelihood = (res.likelihood as number) || 0;
+    console.log(`Likelihood: ${likelihood}`);
+  });
+};
 
-console.log("Foobar");
+restoreOptions();
+update();

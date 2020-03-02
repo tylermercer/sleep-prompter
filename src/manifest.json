@@ -11,5 +11,26 @@
 				"main.ts"
 			]
 		}
-	]
+	],
+	"options_ui": {
+		"page": "options.html",
+		"browser_style": true
+	},
+	"background": {
+		"scripts": [
+			"background.js"
+		]
+	},
+	"browser_action": {
+		"default_title": "Favourite colour option"
+	},
+	"permissions": [
+		"storage"
+	],
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "sleep-prompter@tylermercer.net",
+			"strict_min_version": "57.0a1"
+		}
+	}
 }
