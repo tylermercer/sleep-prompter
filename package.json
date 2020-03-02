@@ -1,6 +1,6 @@
 {
   "name": "sleep-prompter",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A WebExtension that subtly prompts the user to think about sleep near their bedtime",
   "scripts": {
     "start": "run-p start:parcel start:webext",
