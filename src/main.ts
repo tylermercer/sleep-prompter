@@ -7,7 +7,7 @@ const getFilters = (offset: number) => {
   return Math.random() > 0.7 ? "filter: " + filters[offset % filters.length] + ";" : "";
 };
 
-var likelihood = 1; //TODO: compute likelihood based on time of day
+var target: number, leadUp: number, likelihood: number;
 
 const update = () => {
   const elements = document.getElementsByTagName("img");
@@ -33,13 +33,24 @@ observer.observe(document.getRootNode(), {
   subtree: true,
 });
 
-const restoreOptions = () => {
-  var gettingItem = browser.storage.sync.get('likelihood');
-  gettingItem.then((res) => {
-    likelihood = (res.likelihood as number) || 0;
-    console.log(`Likelihood: ${likelihood}`);
+const restoreOptions = async () => {
+  return Promise.all([
+    browser.storage.sync.get('bedtime'),
+    browser.storage.sync.get('leadUp')
+  ]).then(([bedtimeItem, leadUpItem]) => {
+    let [hours, minutes] = (bedtimeItem.bedtime as string).split(":").map(v => parseInt(v));
+    target = hours * 60 + minutes;
+    leadUp = parseInt(leadUpItem.leadUp as string);
+    computeLikelihood();
   });
 };
 
-restoreOptions();
-update();
+const computeLikelihood = () => {
+  let time = new Date();
+  let currentHours = time.getHours();
+  let current = time.getMinutes() + currentHours * 60;
+  //TODO: handle when current passes target
+  likelihood = Math.max(1 - (target - current) / leadUp, 0);
+};
+
+restoreOptions().then(() => update());
