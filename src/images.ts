@@ -1,5 +1,5 @@
 // These images are the publicly-available low-resolution ones from ShutterStock
-const images: String[] = [
+const images: string[] = [
   "https://image.shutterstock.com/image-photo/guy-yawning-stretching-studio-260nw-575234722.jpg",
   "https://image.shutterstock.com/image-photo/tired-sleepy-woman-yawning-working-260nw-367741853.jpg",
   "https://image.shutterstock.com/image-photo/multiethnic-group-sleepy-people-women-260nw-520073314.jpg",
