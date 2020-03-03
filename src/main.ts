@@ -26,12 +26,14 @@ const update = () => {
   }
 };
 
-const observer = new MutationObserver((_, __) => update());
+const registerObserver = () => {
+  const observer = new MutationObserver((_, __) => update());
 
-observer.observe(document.getRootNode(), {
-  childList: true,
-  subtree: true,
-});
+  observer.observe(document.getRootNode(), {
+    childList: true,
+    subtree: true,
+  });
+};
 
 const restoreOptions = async () => {
   return Promise.all([
@@ -41,7 +43,6 @@ const restoreOptions = async () => {
     let [hours, minutes] = (bedtimeItem.bedtime as string).split(":").map(v => parseInt(v));
     target = hours * 60 + minutes;
     leadUp = parseInt(leadUpItem.leadUp as string);
-    computeLikelihood();
   });
 };
 
@@ -53,4 +54,11 @@ const computeLikelihood = () => {
   likelihood = Math.max(1 - (target - current) / leadUp, 0);
 };
 
-restoreOptions().then(() => update());
+restoreOptions()
+  .then(() => computeLikelihood())
+  .then(() => {
+    if (likelihood > 0) {
+      registerObserver();
+      update();
+    }
+  });
