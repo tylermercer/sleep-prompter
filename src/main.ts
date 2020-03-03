@@ -3,11 +3,13 @@ import "webextension-polyfill";
 import images from './images';
 import filters from './filters';
 
-const getFilters = (offset: number) => {
-  return Math.random() > 0.7 ? "filter: " + filters[offset % filters.length] + ";" : "";
-};
+const PROPORTION_FILTERED = 0.3;
 
 var target: number, leadUp: number, likelihood: number;
+
+const getFilters = (offset: number) => {
+  return Math.random() > (1 - PROPORTION_FILTERED) ? filters[offset % filters.length] : "";
+};
 
 const update = () => {
   const elements = document.getElementsByTagName("img");
@@ -20,7 +22,8 @@ const update = () => {
     if (el.hasAttribute("yawning")) continue;
     if (Math.random() < likelihood) {
       el.src = images[(imageOffset + i) % images.length];
-      el.setAttribute("style", "object-fit: cover;" + getFilters(filterOffset + i));
+      el.style.objectFit = "cover";
+      el.style.filter = getFilters(filterOffset + i);
     }
     el.setAttribute("yawning", "true");
   }
